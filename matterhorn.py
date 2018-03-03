@@ -8,11 +8,11 @@ import re
 import datetime
 
 ## Enter user's API key, secret, and Stubhub login
-app_token = '3e9b99d1adcb38d09407cdd0f35bb4f5'
-consumer_key = 'chb8GUauQvckFXI0lqjJ1y1oNG4a'
-consumer_secret = '1udkFXv1hwTZtvHuhBw5DKs0_5Ma'
-stubhub_username = 'levittdj@gmail.com'
-stubhub_password = 'Zxcvbnm4!'
+app_token = 'Rob - enter your info here'
+consumer_key = 'Rob - enter your info here'
+consumer_secret = 'Rob - enter your info here'
+stubhub_username = 'Rob - enter your info here'
+stubhub_password = 'Rob - enter your info here'
 
 combo = consumer_key + ':' + consumer_secret
 basic_authorization_token = base64.b64encode(combo.encode('utf-8'))

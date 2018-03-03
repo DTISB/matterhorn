@@ -13,11 +13,11 @@ import datetime
 #### Step 1: # Obtaining StubHub User Access Token ####
 
 ## Enter user's API key, secret, and Stubhub login
-app_token = input('Enter app token: ')
-consumer_key = input('Enter consumer key: ')
-consumer_secret = input('Enter consumer secret: ')
-stubhub_username = input('Enter Stubhub username (email): ')
-stubhub_password = input('Enter Stubhub password: ')
+app_token = '3e9b99d1adcb38d09407cdd0f35bb4f5'
+consumer_key = 'chb8GUauQvckFXI0lqjJ1y1oNG4a'
+consumer_secret = '1udkFXv1hwTZtvHuhBw5DKs0_5Ma'
+stubhub_username = 'levittdj@gmail.com'
+stubhub_password = 'Zxcvbnm4!'
 
 ## Generating basic authorization token
 combo = consumer_key + ':' + consumer_secret
@@ -48,7 +48,7 @@ headers['Accept'] = 'application/json'
 headers['Accept-Encoding'] = 'application/json'
 
 ## Enter event ID
-eventid = '9837052'
+eventid = '103138868'
 data = {'eventid':eventid}
 
 ## GET request and change to Pandas dataframe
@@ -61,7 +61,7 @@ listing_df = pd.DataFrame(inv['listing'])
 listing_df['amount'] = listing_df.apply(lambda x: x['currentPrice']['amount'], axis=1)
 
 ## Export to a csv file
-listing_df.to_csv('tickets_listing.csv', index=False)
+listing_df.to_csv('test.csv', index=False)
 
 #### Step 3 - Adding Event and Venue Info ####
 
@@ -69,26 +69,25 @@ listing_df.to_csv('tickets_listing.csv', index=False)
 info_url = 'https://api.stubhub.com/catalog/events/v2/' + eventid
 info = requests.get(info_url, headers=headers)
 
-# pprint.pprint(info.json())
+pprint.pprint(info.json())
 
-info_dict = info.json()
-event_date = datetime.datetime.strptime(info_dict['eventDateLocal'][:10], '%Y-%m-%d')
+#info_dict = info.json()
+#event_date = datetime.datetime.strptime(info_dict['eventDateLocal'][:10], '%Y-%m-%d')
 
-event_name = info_dict['title']
-event_date = info_dict['eventDateLocal'][:10]
-venue = info_dict['venue']['name']
+#event_name = info_dict['title']
+#event_date = info_dict['eventDateLocal'][:10]
+#venue = info_dict['venue']['name']
 
-snapshot_date = datetime.datetime.today().strftime('%m/%d/%Y')
+#snapshot_date = datetime.datetime.today().strftime('%m/%d/%Y')
 
-listing_df['snapshotDate'] = snapshot_date
-listing_df['eventName'] = event_name
-listing_df['eventDate'] = event_date
-listing_df['venue'] = venue
+#listing_df['snapshotDate'] = snapshot_date
+#listing_df['eventName'] = event_name
+#listing_df['eventDate'] = event_date
+#listing_df['venue'] = venue
 
-my_col = ['snapshotDate','eventName','eventDate', 'venue', 'sectionName', 'row',
-          'seatNumbers', 'quantity', 'deliveryTypeList', 'amount']
+#my_col = ['snapshotDate','eventName','eventDate', 'venue', 'sectionName', 'row', 'seatNumbers', 'quantity', 'deliveryTypeList', 'amount']
 
-final_df = listing_df[my_col]
+#final_df = listing_df[my_col]
 
 ## Exporting final report
-final_df.to_csv('tickets_listing_with_info.csv', index=False)
+final_df.to_csv('test_with_info.csv', index=False)
